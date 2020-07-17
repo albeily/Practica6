@@ -27,7 +27,7 @@ public class Main {
                 config.addStaticFiles("/META-INF");
 
                 // config.registerPlugin(new RouteOverviewPlugin("/rutas")); //aplicando plugins de las rutas
-            }).start(7000);
+            }).start(getHerokuAssignedPort());
             //Abriendo base de datos
             if(args.length >= 1){
                 modoConexion = args[0];
