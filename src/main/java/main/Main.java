@@ -20,6 +20,14 @@ public class Main {
         try {
             String mensaje = "Software ORM - JAP";
             System.out.println(mensaje);
+            Javalin app = Javalin.create(config -> {
+                config.addStaticFiles("/templates");
+                config.addStaticFiles("/design");//desde la carpeta de resources
+                config.addStaticFiles("/images");
+                config.addStaticFiles("/META-INF");
+
+                // config.registerPlugin(new RouteOverviewPlugin("/rutas")); //aplicando plugins de las rutas
+            }).start(7000);
             //Abriendo base de datos
             if(args.length >= 1){
                 modoConexion = args[0];
@@ -33,15 +41,6 @@ public class Main {
             miMarket = new Market();
 
 
-            //Creando la instancia del servidor.
-            Javalin app = Javalin.create(config -> {
-                config.addStaticFiles("/templates");
-                config.addStaticFiles("/design");//desde la carpeta de resources
-                config.addStaticFiles("/images");
-                config.addStaticFiles("/META-INF");
-
-                // config.registerPlugin(new RouteOverviewPlugin("/rutas")); //aplicando plugins de las rutas
-            }).start(7000);
 
             templatesRegister();
             Controladora miControladora = new Controladora(app, miMarket);
