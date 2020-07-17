@@ -1,0 +1,108 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+a:hover {
+    color: #1b1e21;
+    font-weight: bold;
+}
+
+
+h1 {
+    font-weight: bold;
+}
+
+.container {
+    max-width: 960px;
+    alignment: center;
+}
+
+td {
+
+    vertical-align: middle;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.img {
+    padding: 5px;
+    text-align: center;
+
+}
+
+.titulo {
+    padding: 5px;
+    text-align: center;
+}
+
+.btn {
+    font-weight: bold;
+    color: rgb(4, 25, 56);
+    border-style: groove;
+    border-color: rgb(4, 25, 56);
+}
+
+.btn:hover {
+    background-color: rgb(4, 25, 56);
+    color: white;
+
+}
+
+.form-edit-create {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-edit-create .form-control {
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-edit-create .form-control:focus {
+    z-index: 2;
+}
+
+.form-edit-create input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.menu {
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    font-style: normal;
+    padding: 5px;
+
+
+}
+
+.menu:hover {
+    padding: 5px;
+    color: rgb(4, 25, 56);
+    font-weight: bold;
+    background-color: white;
+    border-radius: 10px;
+
+
+}
+
+.menubar {
+    background-color: rgb(4, 25, 56);
+}
+
+
+
+ 

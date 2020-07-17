@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/templates/plantilla.html :: head">
+
+</head>
+<body>
+<header th:replace="/templates/plantilla.html :: header">
+</header>
+
+<h1 style="font-style: normal" class="ml-5 mb-5 mt-5 text-center">Crear Nuevo Producto</h1>
+
+<div class="container">
+
+    <form class="form-edit-create " id="create" action="/administrar/creareditar/acepto" enctype="multipart/form-data"
+          method="post">
+        <h5  style="font-weight: bold;" for="nombre">Nombre</h5>
+        <input type="hidden" name="id" th:value="${producto.id}">
+        <input type="text" id="nombre" name="nombre" class="form-control" th:value="${producto.nombre}"
+               placeholder="Nombre"  style="width: 370px;" required autofocus>
+        <h5 style="font-weight: bold;" class="mt-4" for="precio">Precio RD$</h5>
+        <input type="text" id="precio" class="form-control" name="precio"
+               placeholder="Precio RD$" min="1" style="width: 200px;" required>
+        <h5 style="font-weight: bold;" class=" mt-4" for="descripcion">Descripcion</h5>
+        <textarea class="mt-2"  id="descripcion" name="descripcion"  rows="5" cols="50" th:text="${producto.descripcion}"
+                  placeholder="--- Descripcion del producto ---" required ></textarea>
+        <h5 for="foto" class="mt-3">Fotos</h5>
+        <input class="form-control" id="foto" type="file" style="width:370px;" name="foto" multiple required>
+        <button class="btn btn-success mt-2" type="submit" form="create" role="button">
+            <svg width="25px" height="25px" viewBox="0 0 16 16" style="color: white;" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+            </svg>
+        </button>
+        <a class="btn  btn-danger mt-2" href="/administrar/crud" role="button">
+            <svg width="25px" height="25px" style="color: white;" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+            </svg>
+        </a>
+    </form>
+
+
+    <hr/>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/templates/plantilla.html :: head">
+</head>
+<body>
+<header th:replace="/templates/plantilla.html :: header">
+</header>
+
+<h1 style="font-style: normal" class="ml-5 mb-5 mt-5 text-center">Ventas Realizadas</h1>
+
+<div class="container mb-5">
+    <div class="table-responsive mt-2">
+        <th:block th:each="venta : ${misVentas}">
+            <h4 class="infoventa " style="font-style: italic;"><span
+                    th:text="'Venta: '+ ${venta.id} + ' - ' + ${venta.nombreCliente} + ' - Fecha: ' + ${venta.fechaCompra}"></span>
+            </h4>
+            <table class="table mt-3">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio (RD$)</th>
+                    <th>Cantidad</th>
+                    <th>Total (RD$)</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <th:block th:each="compra : ${venta.ventasProductos}">
+                    <tr>
+                        <td th:text="${compra.ventaProducto.nombre}"></td>
+                        <td th:text="${compra.ventaProducto.precio}"></td>
+                        <td th:text="${compra.cantidad}"></td>
+                        <td th:text="${compra.totalCompra}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+                <tfoot>
+                <th:block>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td th:text="${venta.totalVenta}"></td>
+                    </tr>
+                </th:block>
+                </tfoot>
+            </table>
+        </th:block>
+    </div>
+
+</div>
+</body>
+</html>
+
+

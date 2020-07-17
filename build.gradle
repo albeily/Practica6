@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'main.Main'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    //Encriptacion
+    compile group: 'org.jasypt', name: 'jasypt', version: '1.9.3'
+    //Thymeleaf
+    compile 'org.thymeleaf:thymeleaf:3.0.5.RELEASE'
+    //dependencia de Javalin
+    compile 'io.javalin:javalin:3.9.0'
+    //manejo de log.
+    compile "org.slf4j:slf4j-simple:1.7.28"
+    //Procesamiento JSON para Javalin.
+    compile "com.fasterxml.jackson.core:jackson-databind:2.10.1"
+    //ORM - Hibernate.
+    compile 'org.hibernate:hibernate-core:5.4.17.Final'
+    //Postgresql database
+    compile 'org.postgresql:postgresql:42.2.1'
+    compile 'com.h2database:h2:1.4.200'
+}
+shadowJar{
+    baseName = 'app'
+    classifier = ''
+    archiveVersion = ''
+}
+
+/**
+ * tarea necesaria para heroku si optamos por la tarea de Shadowjar
+ * en el archivo Procfile debe estar el siguiente comando:
+ * web: java -jar build/libs/app.jar
+ */
+task stage {
+    dependsOn shadowJar
+}

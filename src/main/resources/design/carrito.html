@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/templates/plantilla.html :: head">
+</head>
+<body>
+<header th:replace="/templates/plantilla.html :: header">
+</header>
+
+<h1 style="font-style: normal" class="ml-5 mb-5 mt-5 text-center">Carrito de Compras</h1>
+
+<div class="container mb-5">
+
+        <h5 class="font-italic font-weight-bold">Datos del cliente</h5>
+    <form id="clientenombre" method="post" action="/carrito/procesarCompra">
+        <input style="width: 500px; height: 35px;" class="font-italic cliente mt-2" type="text" name="cliente" id="cliente" required
+               placeholder="-- Nombre Completo --" ></form>
+
+    <div class="table-responsive mt-2 ">
+        <table class="table ">
+            <thead class="thead-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Precio (RD$)</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <th:block th:each="productos : ${miCarrito}">
+
+                <tr>
+
+                    <td class="b" th:text="${productos.producto.nombre}"></td>
+                    <td class="b" th:text="${productos.producto.precio}"></td>
+                    <td class="b" th:text="${productos.cantidad}"></td>
+                    <td class="b" th:text="${productos.totalCompra}"></td>
+                    <td>
+                        <a class=" btn btn-danger " th:href="@{/carrito/eliminar(id=${productos.producto.id})}" >
+                                <svg width="25px" height="25px" viewBox="0 0 16 16"  style="color:white" class="bi bi-cart-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M6 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                    <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                </svg>
+                                <span  th:text=" '(' + ${productos.cantidad} + ')' "></span>
+                            </a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+            <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td class="b" th:text="${total}"></td>
+            </tfoot>
+        </table>
+    </div>
+
+    <div>
+        <button class=" btn btn-success "  type="submit" form="clientenombre"><span>
+             <svg width="25px" height="25px" style="color: white;" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11.354 5.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>
+        </span></button>
+        <a role="button" href="/carrito/limpiarCarrito" class=" btn   btn-primary" type="submit">
+            <svg width="25px" height="25px" viewBox="0 0 16 16" style="color: white;"  class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>
+            <svg width="25px" height="25px" viewBox="0 0 16 16" style="color: white;" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+            <svg width="25px" height="25px" viewBox="0 0 16 16" style="color: white;" class="bi bi-cart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
+
+

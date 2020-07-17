@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/templates/plantilla.html :: head">
+</head>
+<body>
+<header th:replace="/templates/plantilla.html :: header">
+</header>
+
+<h1 style="font-style: normal" class="ml-5 mb-5 mt-5 text-center">Editar Producto</h1>
+
+<div class="container">
+    <form class="form-edit-create" id="editcreate" action="/administrar/creareditar/acepto"
+          enctype="multipart/form-data" method="post">
+        <h5 style="font-weight: bold;" for="nombre">Nombre</h5>
+        <input type="hidden" name="id" th:value="${producto.id}">
+        <input type="text" id="nombre" name="nombre" class="form-control" th:value="${producto.nombre}"
+               placeholder="Nombre" style="width: 370px;" required autofocus>
+        <h5 style="font-weight: bold;" class="mt-4" for="precio">Precio RD$</h5>
+        <input type="text" id="precio" class="form-control" name="precio" th:value="${producto.precio}"
+               placeholder="Precio RD$" min="1" style="width: 200px;" autofocus required>
+        <h5 style="font-weight: bold;" class="mt-4" for="descripcion">Descripcion</h5>
+        <textarea id="descripcion" name="descripcion" rows="5" cols="50" th:text="${producto.descripcion}"
+                  placeholder="--- Descripcion del producto ---"  autofocus required></textarea>
+        <h5 style="font-weight: bold;" class="mt-4" for="foto">Fotos</h5>
+        <input class="form-control" id="foto" type="file" style="width:370px;" name="foto" multiple>
+    </form>
+    <button class="btn btn-success mt-2" type="submit" form="editcreate" role="button">
+        <svg width="25px" height="25px" viewBox="0 0 16 16" style="color: white;" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+        </svg>
+    </button>
+    <a class="btn  btn-danger mt-2" href="/administrar/crud" role="button">
+        <svg width="25px" height="25px" style="color: white;" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+        </svg>
+    </a>
+    <hr/>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Accion</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="foto : ${fotos}">
+            <td th:text="${foto.nombre}">Nombre Foto</td>
+            <td th:text="${foto.mimeType}">PNG</td>
+            <td>
+                <a target="_blank"
+                   th:href="'/fotos/visualizar/'+${producto.id} +'/'+ ${foto.nombre}" th
+                   class="btn btn-primary ">
+                    <svg width="25px" height="25px"  style="color: white;" viewBox="0 0 16 16" class="bi bi-eyeglasses" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8-1a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M8 7a1 1 0 0 0-1 1H6a2 2 0 1 1 4 0H9a1 1 0 0 0-1-1zM0 8a.5.5 0 0 1 .5-.5h1v1h-1A.5.5 0 0 1 0 8zm15.5.5h-1v-1h1a.5.5 0 0 1 0 1z"/>
+                    </svg>
+                </a>
+                <a  th:href="'/fotos/eliminar/'+ ${producto.id} + '/'+${foto.nombre}" th
+                   class="btn btn-danger ">
+                    <svg width="25px" height="25px"  style="color: white;" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
