@@ -20,6 +20,16 @@ public class Main {
         try {
             String mensaje = "Software ORM - JAP";
             System.out.println(mensaje);
+            //Abriendo base de datos
+            if(args.length >= 1){
+                modoConexion = args[0];
+                System.out.println("Modo de Operacion: "+modoConexion);
+            }
+            //Iniciando la base de datos.
+            if(modoConexion.isEmpty()) {
+                ServicioBD.getInstance();
+            }
+
             Javalin app = Javalin.create(config -> {
                 config.addStaticFiles("/templates");
                 config.addStaticFiles("/design");//desde la carpeta de resources
@@ -28,20 +38,8 @@ public class Main {
 
                 // config.registerPlugin(new RouteOverviewPlugin("/rutas")); //aplicando plugins de las rutas
             }).start(getHerokuAssignedPort());
-            //Abriendo base de datos
-            if(args.length >= 1){
-                modoConexion = args[0];
-                System.out.println("Modo de Operacion: "+modoConexion);
-            }
 
-            //Iniciando la base de datos.
-            if(modoConexion.isEmpty()) {
-                ServicioBD.getInstance();
-            }
             miMarket = new Market();
-
-
-
             templatesRegister();
             Controladora miControladora = new Controladora(app, miMarket);
             miControladora.rutas();
