@@ -21,8 +21,10 @@ public class GestionBD<T> {
         if(emf == null) {
 
             if(Main.getModoConexion().equalsIgnoreCase("Heroku")){
+                System.out.print("HEROKU");
                 emf = getConfiguracionBaseDatosHeroku();
             }else{
+                System.out.print("UNIVERSAL");
                 emf = Persistence.createEntityManagerFactory("Universal");
             }
         }
