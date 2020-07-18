@@ -32,7 +32,10 @@ public class ServicioUsuario extends GestionBD<Usuario> {
 
     public Usuario crearUsuario(Usuario aux) {
         Usuario usuario = encryptacionUsuario(aux);
-        return super.crear(usuario);
+        if(getUsuario(usuario.getUsuario())==null){
+            return super.crear(usuario);
+        }
+        return usuario;
     }
 
     public Usuario encryptacionUsuario(Usuario usuario) {
