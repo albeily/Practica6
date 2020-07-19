@@ -49,6 +49,9 @@ public class ServicioBD {
     public static void startBD() throws SQLException {
         tcpServer = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers", "-tcpDaemon", "-ifNotExists").start();
          bd = Server.createWebServer( "-webPort", "9000","-webDaemon","-webAllowOthers").start();
+         System.out.println(bd.getURL());
+         System.out.println(bd.getStatus());
+
     }
 
     public static void stopBD() throws SQLException {

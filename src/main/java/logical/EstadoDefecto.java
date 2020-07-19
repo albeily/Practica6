@@ -17,8 +17,8 @@ public class EstadoDefecto {
 
 
     public EstadoDefecto() {
-        productosDefecto();
-        ventasDefecto();
+        //productosDefecto();
+        //ventasDefecto();
         usuarioDefecto();
     }
 

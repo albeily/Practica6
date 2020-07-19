@@ -89,7 +89,7 @@
                 </li>
 
                 <li th:class="${pagina==indice} ? 'page-item disabled' : 'page-item'"><a class="page-link"
-                                                                                         th:href="@{/listaproductos(pagina=${pagina})}"><span
+                                                                                         th:href="@{/listaproductos(pagina=${indice})}"><span
                         th:text="${indice}"></span></a></li>
 
                 <li th:class="${pagina==cantidad_pagina} ? 'page-item disabled' : 'page-item'" th:if="${stat.last}">
